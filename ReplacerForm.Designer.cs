@@ -29,7 +29,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.btnConvert = new System.Windows.Forms.Button();
             this.cBoxSkin = new System.Windows.Forms.ComboBox();
             this.cBoxPube = new System.Windows.Forms.ComboBox();
@@ -37,28 +36,24 @@
             this.labelConvert = new System.Windows.Forms.Label();
             this.labelPube = new System.Windows.Forms.Label();
             this.cBoxConversion = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtVersion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Location = new System.Drawing.Point(195, 12);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(593, 426);
-            this.propertyGrid1.TabIndex = 0;
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(12, 409);
+            this.btnConvert.Location = new System.Drawing.Point(22, 189);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(159, 29);
             this.btnConvert.TabIndex = 3;
-            this.btnConvert.Text = "Convert Files";
+            this.btnConvert.Text = "Select File(s)";
             this.btnConvert.UseVisualStyleBackColor = true;
+            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // cBoxSkin
             // 
             this.cBoxSkin.FormattingEnabled = true;
-            this.cBoxSkin.Location = new System.Drawing.Point(7, 27);
+            this.cBoxSkin.Location = new System.Drawing.Point(12, 27);
             this.cBoxSkin.Name = "cBoxSkin";
             this.cBoxSkin.Size = new System.Drawing.Size(182, 23);
             this.cBoxSkin.TabIndex = 4;
@@ -69,7 +64,7 @@
             this.cBoxPube.Items.AddRange(new object[] {
             "Gen 3",
             "Bibo+"});
-            this.cBoxPube.Location = new System.Drawing.Point(7, 71);
+            this.cBoxPube.Location = new System.Drawing.Point(12, 71);
             this.cBoxPube.Name = "cBoxPube";
             this.cBoxPube.Size = new System.Drawing.Size(182, 23);
             this.cBoxPube.TabIndex = 5;
@@ -107,16 +102,36 @@
             this.cBoxConversion.Items.AddRange(new object[] {
             "Gen 3",
             "Bibo+"});
-            this.cBoxConversion.Location = new System.Drawing.Point(7, 128);
+            this.cBoxConversion.Location = new System.Drawing.Point(12, 128);
             this.cBoxConversion.Name = "cBoxConversion";
             this.cBoxConversion.Size = new System.Drawing.Size(182, 23);
             this.cBoxConversion.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 244);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 15);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Version";
+            // 
+            // txtVersion
+            // 
+            this.txtVersion.Location = new System.Drawing.Point(12, 266);
+            this.txtVersion.Name = "txtVersion";
+            this.txtVersion.ReadOnly = true;
+            this.txtVersion.Size = new System.Drawing.Size(126, 23);
+            this.txtVersion.TabIndex = 11;
+            this.txtVersion.Text = "VersionNumber";
             // 
             // ReplacerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(206, 301);
+            this.Controls.Add(this.txtVersion);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cBoxConversion);
             this.Controls.Add(this.labelPube);
             this.Controls.Add(this.labelConvert);
@@ -124,19 +139,17 @@
             this.Controls.Add(this.cBoxPube);
             this.Controls.Add(this.cBoxSkin);
             this.Controls.Add(this.btnConvert);
-            this.Controls.Add(this.propertyGrid1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ReplacerForm";
             this.Text = "TexTools MPL Replacer";
+            this.Load += new System.EventHandler(this.ReplacerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.ComboBox cBoxSkin;
         private System.Windows.Forms.ComboBox cBoxPube;
@@ -144,5 +157,7 @@
         private System.Windows.Forms.Label labelConvert;
         private System.Windows.Forms.Label labelPube;
         private System.Windows.Forms.ComboBox cBoxConversion;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtVersion;
     }
 }

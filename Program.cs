@@ -1,10 +1,40 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace TTMPLReplacer
 {
     static class Program
     {
+        public const string VersionNumber = "1.0.0";
+        
+        public static string BasePath => AppDomain.CurrentDomain.BaseDirectory;
+
+        public static string ConvertedFolder => Path.Combine(BasePath, "Converted");
+
+        private static bool _startedLog;
+
+        private static string LogFile => Path.Combine(BasePath, "Output.log");
+
+        public static void Log(string logText)
+        {
+            Console.WriteLine(logText);
+            if (!_startedLog && File.Exists(LogFile))
+            {
+                File.Delete(LogFile);
+                _startedLog = true;
+            }
+
+            using StreamWriter sw = File.AppendText(LogFile);
+            sw.WriteLine(logText);
+        }
+
+        public static Enums.ConvertType ConvertType;
+
+        public static Enums.PubeSlot PubeSlot;
+
+        public static Enums.SkinSlot SkinSlot;
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
