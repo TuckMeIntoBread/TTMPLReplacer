@@ -37,6 +37,8 @@ namespace TTMPLReplacer
                 selectedFiles = fileDialog.FileNames.ToArray();
             }
 
+            if (selectedFiles.Length == 0) return;
+
             Stopwatch sw = Stopwatch.StartNew();
             int successfulConversion = 0;
             int failedConversions = 0;
