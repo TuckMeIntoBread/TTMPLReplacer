@@ -38,6 +38,7 @@
             this.cBoxConversion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtVersion = new System.Windows.Forms.TextBox();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConvert
@@ -56,7 +57,7 @@
             this.cBoxSkin.Location = new System.Drawing.Point(12, 27);
             this.cBoxSkin.Name = "cBoxSkin";
             this.cBoxSkin.Size = new System.Drawing.Size(182, 23);
-            this.cBoxSkin.TabIndex = 4;
+            this.cBoxSkin.TabIndex = 1;
             // 
             // cBoxPube
             // 
@@ -67,7 +68,7 @@
             this.cBoxPube.Location = new System.Drawing.Point(12, 71);
             this.cBoxPube.Name = "cBoxPube";
             this.cBoxPube.Size = new System.Drawing.Size(182, 23);
-            this.cBoxPube.TabIndex = 5;
+            this.cBoxPube.TabIndex = 2;
             // 
             // labelSkin
             // 
@@ -105,7 +106,7 @@
             this.cBoxConversion.Location = new System.Drawing.Point(12, 128);
             this.cBoxConversion.Name = "cBoxConversion";
             this.cBoxConversion.Size = new System.Drawing.Size(182, 23);
-            this.cBoxConversion.TabIndex = 9;
+            this.cBoxConversion.TabIndex = 3;
             // 
             // label1
             // 
@@ -123,13 +124,26 @@
             this.txtVersion.ReadOnly = true;
             this.txtVersion.Size = new System.Drawing.Size(126, 23);
             this.txtVersion.TabIndex = 11;
+            this.txtVersion.TabStop = false;
             this.txtVersion.Text = "VersionNumber";
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(144, 266);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(55, 23);
+            this.btnHelp.TabIndex = 12;
+            this.btnHelp.TabStop = false;
+            this.btnHelp.Text = "Help!";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // ReplacerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(206, 301);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.txtVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cBoxConversion);
@@ -159,5 +173,6 @@
         private System.Windows.Forms.ComboBox cBoxConversion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtVersion;
+        private System.Windows.Forms.Button btnHelp;
     }
 }
