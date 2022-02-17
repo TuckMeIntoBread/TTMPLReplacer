@@ -41,12 +41,12 @@ namespace TTMPLReplacer
             get
             {
                 if (string.IsNullOrEmpty(FullPath)) return ValidCheck.NoFullPath;
-                if (!_validPath) return ValidCheck.InvalidPath;
-                if (!_validFile) return ValidCheck.InvalidFile;
+                if (!_validPath) return ValidCheck.NotBodyPath;
+                if (!_validFile) return ValidCheck.Gen2Tex;
                 if (!ValidRace) return ValidCheck.InvalidRace;
                 if (!ValidType) return ValidCheck.InvalidType;
                 if (TexType == TexType.None) return ValidCheck.NoTexType;
-                if (!IsPubes && !IsSkin) return ValidCheck.InvalidMid;
+                if (!IsPubes && !IsSkin) return ValidCheck.UnknownMid;
                 return ValidCheck.Valid;
             }
         }

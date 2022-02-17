@@ -7,8 +7,8 @@
         NoTexType,
         InvalidRace,
         InvalidType,
-        InvalidPath,
-        InvalidFile,
-        InvalidMid,
+        NotBodyPath,
+        Gen2Tex,
+        UnknownMid,
     }
 }
