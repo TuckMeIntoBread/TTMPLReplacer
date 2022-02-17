@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
 namespace TTMPLReplacer
@@ -124,6 +125,48 @@ namespace TTMPLReplacer
                 }
             }
         }
+
+        public void RemoveMaterials()
+        {
+            if (ModPackPages is not null)
+            {
+                foreach (ModPackPageJson page in ModPackPages)
+                {
+                    if (page is null) continue;
+                    foreach (ModGroupJson group in page.ModGroups)
+                    {
+                        if (group is null) continue;
+                        foreach (ModOptionJson option in group.OptionList)
+                        {
+                            if (option is null) continue;
+                            var optionArray = option.ModsJsons.ToArray();
+                            foreach (ModsJson modsJson in optionArray)
+                            {
+                                if (SkinMaterial.IsMatch(modsJson.FullPath))
+                                {
+                                    Program.Log($"Removed Material {modsJson.Name} : '{modsJson.FullPath}'");
+                                    option.ModsJsons.Remove(modsJson);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (SimpleModsList is null) return;
+            var simpleArray = SimpleModsList.ToArray();
+            foreach (ModsJson modsJson in simpleArray)
+            {
+                if (SkinMaterial.IsMatch(modsJson.FullPath))
+                {
+                    Program.Log($"Removed Material {modsJson.Name} : '{modsJson.FullPath}'");
+                    SimpleModsList.Remove(modsJson);
+                }
+            }
+        }
+
+        public static readonly Regex SkinMaterial = new(@"^chara\/human\/c\d{4}\/obj\/body\/b\d{4}\/material\/[^.]+\.mtrl$",
+            RegexOptions.Compiled | RegexOptions.Multiline);
     }
 
     public class ModPackPageJson

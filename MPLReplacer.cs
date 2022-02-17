@@ -31,6 +31,8 @@ namespace TTMPLReplacer
                         ConvertPath(modsJson);
                     }
                     
+                    jsonData.RemoveMaterials();
+                    
                     zip.RemoveEntry(mpl);
                     zip.AddEntry(mpl.FileName, JsonConvert.SerializeObject(jsonData));
                     zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
