@@ -57,13 +57,7 @@ namespace TTMPLReplacer
         {
             if (modsJson is null) throw new ArgumentNullException(nameof(modsJson));
             if (modsJson.FullPath is null) throw new ArgumentNullException(nameof(modsJson.FullPath), $"{modsJson.Name} has no FullPath!");
-            PathData pathData = new(modsJson);
-            ValidCheck validCheck = pathData.ValidCheck;
-            if (validCheck != ValidCheck.Valid)
-            {
-                Program.Log($"Skipping {pathData}. Reason: {validCheck.ToString()}");
-                return;
-            }
+            if (!TryGetValidPathData(modsJson, out PathData pathData)) return;
 
             if (ReplaceDictionary.TryGetReplacementFileName(pathData, out string replacementFile))
             {
@@ -82,6 +76,48 @@ namespace TTMPLReplacer
             }
             
             Program.Log($"Did not convert {pathData}.");
+        }
+
+        private static bool TryGetValidPathData(ModsJson modsJson, out PathData pathData)
+        {
+            void LogFailed(string reason)
+            {
+                Program.Log($"Skipping '{modsJson.Name}' : '{modsJson.FullPath}' : Reason: {reason}");
+            }
+
+            pathData = null;
+            if (!modsJson.FullPath.StartsWith("chara/human/", StringComparison.OrdinalIgnoreCase))
+            {
+                LogFailed("Not a chara/human/ path.");
+                return false;
+            }
+            
+            if (!modsJson.FullPath.EndsWith(".tex", StringComparison.OrdinalIgnoreCase))
+            {
+                LogFailed("Not a .tex file.");
+                return false;
+            }
+            
+            if (!modsJson.FullPath.Contains("/body/", StringComparison.OrdinalIgnoreCase))
+            {
+                LogFailed("Not a body path.");
+                return false;
+            }
+
+            if (!modsJson.FullPath.Contains("/texture/", StringComparison.OrdinalIgnoreCase))
+            {
+                LogFailed("Not a texture path.");
+                return false;
+            }
+
+            pathData = new PathData(modsJson);
+            if (pathData.IsValid != ValidCheck.Valid)
+            {
+                LogFailed(pathData.IsValid.ToString());
+                return false;
+            }
+
+            return true;
         }
     }
 }

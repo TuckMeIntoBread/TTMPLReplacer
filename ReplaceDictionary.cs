@@ -134,7 +134,7 @@ namespace TTMPLReplacer
             if (pathData.IsPubes)
             {
                 // Don't change if already pubes 'c'.
-                if (string.Equals(pathData.FileMid, "c", StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(pathData.FileSlot, "c", StringComparison.OrdinalIgnoreCase))
                 {
                     Program.Log($"{pathData.Name} is already the appropriate Titan pube code. Skipping.");
                     return false;

@@ -6,7 +6,7 @@ namespace TTMPLReplacer
 {
     static class Program
     {
-        public const string VersionNumber = "1.0.1";
+        public const string VersionNumber = "1.1.0";
         
         public static string BasePath => AppDomain.CurrentDomain.BaseDirectory;
 

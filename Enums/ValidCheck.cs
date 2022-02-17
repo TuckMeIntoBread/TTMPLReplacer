@@ -2,13 +2,13 @@
 {
     public enum ValidCheck
     {
+        Unknown,
         Valid,
-        NoFullPath,
-        NoTexType,
+        FullPathRegexMismatch,
+        InvalidTexType,
         InvalidRace,
         InvalidType,
-        NotBodyPath,
         Gen2Tex,
-        UnknownMid,
+        InvalidSlot,
     }
 }
