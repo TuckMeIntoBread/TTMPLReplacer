@@ -57,6 +57,13 @@ namespace TTMPLReplacer
         {
             replacementPath = string.Empty;
 
+            // Au Ra with pubes uses custom path
+            if (pathData.RaceCode == 1401 && pathData.IsPubes)
+            {
+                replacementPath = BiboAuRaPubes[pathData.TypeCode];
+                return true;
+            }
+
             switch (pathData.RaceCode)
             {
                 // Hyur Midlander
@@ -68,12 +75,8 @@ namespace TTMPLReplacer
                     replacementPath = BiboHighlanderDic[pathData.TypeCode];
                     break;
                 // Au Ra
-                case 1401 when !pathData.HasPubes:
+                case 1401:
                     replacementPath = BiboAuRaDic[pathData.TypeCode];
-                    break;
-                // Au Ra with Pubes (fuck ur naming convention bizu)
-                case 1401 when pathData.HasPubes:
-                    replacementPath = BiboAuRaPubes[pathData.TypeCode];
                     break;
                 // Viera
                 case 1801:
@@ -83,7 +86,7 @@ namespace TTMPLReplacer
                     throw new KeyNotFoundException("Unknown/Invalid race code.");
             }
 
-            if (pathData.RaceCode != 1401 && pathData.HasPubes) replacementPath = $"{replacementPath}_pubes";
+            if (pathData.IsPubes) replacementPath = $"{replacementPath}_pubes";
             return true;
         }
 
@@ -123,10 +126,17 @@ namespace TTMPLReplacer
         {
             replacementPath = string.Empty;
 
-            if (pathData.HasPubes)
+            if (pathData.IsPubes)
             {
-                // TODO: Titan pube weirdness
-                return false;
+                // Don't change if already pubes 'c'.
+                if (string.Equals(pathData.FileMid, "c", StringComparison.OrdinalIgnoreCase))
+                {
+                    Program.Log($"{pathData.Name} is already the appropriate Titan pube code. Skipping.");
+                    return false;
+                }
+
+                replacementPath = $"{pathData.Path}{pathData.FileName.Replace("_e_", "_c_", StringComparison.OrdinalIgnoreCase)}";
+                return true;
             }
 
             switch (pathData.RaceCode)

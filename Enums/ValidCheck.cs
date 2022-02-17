@@ -7,6 +7,8 @@
         NoTexType,
         InvalidRace,
         InvalidType,
-        RegexMismatch,
+        InvalidPath,
+        InvalidFile,
+        InvalidMid,
     }
 }

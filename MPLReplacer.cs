@@ -71,7 +71,7 @@ namespace TTMPLReplacer
                 return;
             }
             
-            Program.Log($"Unable to convert {pathData}");
+            Program.Log($"Did not convert {pathData}.");
         }
     }
 }
