@@ -68,7 +68,15 @@ namespace TTMPLReplacer
             if (ReplaceDictionary.TryGetReplacementFileName(pathData, out string replacementFile))
             {
                 string prevPath = modsJson.FullPath;
-                modsJson.FullPath = $"{pathData.Path}{replacementFile}";
+                switch (Program.ConvertType)
+                {
+                    case ConvertType.Bibo:
+                        modsJson.FullPath = $"chara/bibo/{replacementFile}";
+                        break;
+                    case ConvertType.Gen3:
+                        modsJson.FullPath = $"{pathData.Path}{replacementFile}";
+                        break;
+                }
                 Program.Log($"Converted {modsJson.Name} from '{prevPath}' to '{modsJson.FullPath}'");
                 return;
             }
