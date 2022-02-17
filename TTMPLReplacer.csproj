@@ -11,6 +11,7 @@
         See: https://docs.microsoft.com/en-us/dotnet/standard/assembly/reference-assemblies
         -->
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+        <ApplicationIcon>Cherry.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>

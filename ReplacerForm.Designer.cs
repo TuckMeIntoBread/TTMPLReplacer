@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReplacerForm));
             this.btnConvert = new System.Windows.Forms.Button();
             this.labelConvert = new System.Windows.Forms.Label();
             this.cBoxConversion = new System.Windows.Forms.ComboBox();
@@ -108,6 +109,7 @@
             this.Controls.Add(this.cBoxConversion);
             this.Controls.Add(this.labelConvert);
             this.Controls.Add(this.btnConvert);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ReplacerForm";
