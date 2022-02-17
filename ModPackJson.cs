@@ -138,7 +138,7 @@ namespace TTMPLReplacer
                         if (group is null) continue;
                         foreach (ModOptionJson option in group.OptionList)
                         {
-                            if (option is null) continue;
+                            if (option is null || option.ModsJsons.Count == 0) continue;
                             var optionArray = option.ModsJsons.ToArray();
                             foreach (ModsJson modsJson in optionArray)
                             {
@@ -153,7 +153,7 @@ namespace TTMPLReplacer
                 }
             }
 
-            if (SimpleModsList is null) return;
+            if (SimpleModsList is null || SimpleModsList.Count == 0) return;
             var simpleArray = SimpleModsList.ToArray();
             foreach (ModsJson modsJson in simpleArray)
             {
