@@ -142,7 +142,7 @@ namespace TTMPLReplacer
                             var optionArray = option.ModsJsons.ToArray();
                             foreach (ModsJson modsJson in optionArray)
                             {
-                                if (SkinMaterial.IsMatch(modsJson.FullPath))
+                                if (!string.IsNullOrEmpty(modsJson?.FullPath) && SkinMaterial.IsMatch(modsJson.FullPath))
                                 {
                                     Program.Log($"Removed Material {modsJson.Name} : '{modsJson.FullPath}'");
                                     option.ModsJsons.Remove(modsJson);
@@ -157,7 +157,7 @@ namespace TTMPLReplacer
             var simpleArray = SimpleModsList.ToArray();
             foreach (ModsJson modsJson in simpleArray)
             {
-                if (SkinMaterial.IsMatch(modsJson.FullPath))
+                if (!string.IsNullOrEmpty(modsJson?.FullPath) && SkinMaterial.IsMatch(modsJson.FullPath))
                 {
                     Program.Log($"Removed Material {modsJson.Name} : '{modsJson.FullPath}'");
                     SimpleModsList.Remove(modsJson);
