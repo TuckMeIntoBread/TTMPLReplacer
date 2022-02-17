@@ -6,6 +6,11 @@
         <Nullable>disable</Nullable>
         <UseWindowsForms>true</UseWindowsForms>
         <ImplicitUsings>enable</ImplicitUsings>
+        <!-- 
+        Turns off reference assembly generation 
+        See: https://docs.microsoft.com/en-us/dotnet/standard/assembly/reference-assemblies
+        -->
+        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
     </PropertyGroup>
 
     <ItemGroup>
