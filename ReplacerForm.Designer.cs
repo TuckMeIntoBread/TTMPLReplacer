@@ -30,11 +30,7 @@
         private void InitializeComponent()
         {
             this.btnConvert = new System.Windows.Forms.Button();
-            this.cBoxSkin = new System.Windows.Forms.ComboBox();
-            this.cBoxPube = new System.Windows.Forms.ComboBox();
-            this.labelSkin = new System.Windows.Forms.Label();
             this.labelConvert = new System.Windows.Forms.Label();
-            this.labelPube = new System.Windows.Forms.Label();
             this.cBoxConversion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtVersion = new System.Windows.Forms.TextBox();
@@ -43,7 +39,7 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(22, 189);
+            this.btnConvert.Location = new System.Drawing.Point(27, 88);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(159, 29);
             this.btnConvert.TabIndex = 3;
@@ -51,51 +47,14 @@
             this.btnConvert.UseVisualStyleBackColor = true;
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
-            // cBoxSkin
-            // 
-            this.cBoxSkin.FormattingEnabled = true;
-            this.cBoxSkin.Location = new System.Drawing.Point(12, 27);
-            this.cBoxSkin.Name = "cBoxSkin";
-            this.cBoxSkin.Size = new System.Drawing.Size(182, 23);
-            this.cBoxSkin.TabIndex = 1;
-            // 
-            // cBoxPube
-            // 
-            this.cBoxPube.FormattingEnabled = true;
-            this.cBoxPube.Items.AddRange(new object[] {
-            "Gen 3",
-            "Bibo+"});
-            this.cBoxPube.Location = new System.Drawing.Point(12, 71);
-            this.cBoxPube.Name = "cBoxPube";
-            this.cBoxPube.Size = new System.Drawing.Size(182, 23);
-            this.cBoxPube.TabIndex = 2;
-            // 
-            // labelSkin
-            // 
-            this.labelSkin.AutoSize = true;
-            this.labelSkin.Location = new System.Drawing.Point(7, 9);
-            this.labelSkin.Name = "labelSkin";
-            this.labelSkin.Size = new System.Drawing.Size(74, 15);
-            this.labelSkin.TabIndex = 6;
-            this.labelSkin.Text = "Old Skin Slot";
-            // 
             // labelConvert
             // 
             this.labelConvert.AutoSize = true;
-            this.labelConvert.Location = new System.Drawing.Point(7, 110);
+            this.labelConvert.Location = new System.Drawing.Point(12, 9);
             this.labelConvert.Name = "labelConvert";
             this.labelConvert.Size = new System.Drawing.Size(64, 15);
             this.labelConvert.TabIndex = 7;
             this.labelConvert.Text = "Convert To";
-            // 
-            // labelPube
-            // 
-            this.labelPube.AutoSize = true;
-            this.labelPube.Location = new System.Drawing.Point(7, 53);
-            this.labelPube.Name = "labelPube";
-            this.labelPube.Size = new System.Drawing.Size(79, 15);
-            this.labelPube.TabIndex = 8;
-            this.labelPube.Text = "Old Pube Slot";
             // 
             // cBoxConversion
             // 
@@ -103,7 +62,7 @@
             this.cBoxConversion.Items.AddRange(new object[] {
             "Gen 3",
             "Bibo+"});
-            this.cBoxConversion.Location = new System.Drawing.Point(12, 128);
+            this.cBoxConversion.Location = new System.Drawing.Point(17, 27);
             this.cBoxConversion.Name = "cBoxConversion";
             this.cBoxConversion.Size = new System.Drawing.Size(182, 23);
             this.cBoxConversion.TabIndex = 3;
@@ -111,7 +70,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 244);
+            this.label1.Location = new System.Drawing.Point(12, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 15);
             this.label1.TabIndex = 10;
@@ -119,7 +78,7 @@
             // 
             // txtVersion
             // 
-            this.txtVersion.Location = new System.Drawing.Point(12, 266);
+            this.txtVersion.Location = new System.Drawing.Point(17, 165);
             this.txtVersion.Name = "txtVersion";
             this.txtVersion.ReadOnly = true;
             this.txtVersion.Size = new System.Drawing.Size(126, 23);
@@ -129,7 +88,7 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(144, 266);
+            this.btnHelp.Location = new System.Drawing.Point(149, 165);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(55, 23);
             this.btnHelp.TabIndex = 12;
@@ -142,16 +101,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(206, 301);
+            this.ClientSize = new System.Drawing.Size(226, 207);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.txtVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cBoxConversion);
-            this.Controls.Add(this.labelPube);
             this.Controls.Add(this.labelConvert);
-            this.Controls.Add(this.labelSkin);
-            this.Controls.Add(this.cBoxPube);
-            this.Controls.Add(this.cBoxSkin);
             this.Controls.Add(this.btnConvert);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -165,11 +120,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnConvert;
-        private System.Windows.Forms.ComboBox cBoxSkin;
-        private System.Windows.Forms.ComboBox cBoxPube;
-        private System.Windows.Forms.Label labelSkin;
         private System.Windows.Forms.Label labelConvert;
-        private System.Windows.Forms.Label labelPube;
         private System.Windows.Forms.ComboBox cBoxConversion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtVersion;

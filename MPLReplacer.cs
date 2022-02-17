@@ -15,7 +15,7 @@ namespace TTMPLReplacer
         {
             try
             {
-                Program.Log($"Converting {Path.GetFileName(filePath)}");
+                Program.Log($"Converting '{Path.GetFileName(filePath)}'!");
                 Stopwatch sw = Stopwatch.StartNew();
                 using (ZipFile zip = ZipFile.Read(filePath))
                 {
@@ -38,12 +38,12 @@ namespace TTMPLReplacer
                     if (!Directory.Exists(Program.ConvertedFolder)) Directory.CreateDirectory(Program.ConvertedFolder);
                     zip.Save(Path.Combine(Program.ConvertedFolder, Path.GetFileName(filePath)));
                     sw.Stop();
-                    Program.Log($"Converted {Path.GetFileName(filePath)} in {sw.ElapsedMilliseconds:n0}ms.");
+                    Program.Log($"Converted '{Path.GetFileName(filePath)}' in {sw.ElapsedMilliseconds:n0}ms." + Environment.NewLine);
                 }
             }
             catch (Exception e)
             {
-                Program.Log($"Something went wrong with converting {Path.GetFileName(filePath)}!");
+                Program.Log($"Something went wrong with converting '{Path.GetFileName(filePath)}'!" + Environment.NewLine);
                 Program.Log(e.ToString());
                 return false;
             }

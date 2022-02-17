@@ -31,10 +31,6 @@ namespace TTMPLReplacer
 
         public static Enums.ConvertType ConvertType;
 
-        public static Enums.PubeSlot PubeSlot;
-
-        public static Enums.SkinSlot SkinSlot;
-
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

@@ -18,15 +18,11 @@ namespace TTMPLReplacer
         {
             txtVersion.Text = Program.VersionNumber;
             cBoxConversion.DataSource = Enum.GetValues(typeof(ConvertType));
-            cBoxSkin.DataSource = Enum.GetValues(typeof(SkinSlot));
-            cBoxPube.DataSource = Enum.GetValues(typeof(PubeSlot));
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
             Program.ConvertType = Enum.Parse<ConvertType>(cBoxConversion.SelectedValue.ToString() ?? string.Empty);
-            Program.SkinSlot = Enum.Parse<SkinSlot>(cBoxSkin.SelectedValue.ToString() ?? string.Empty);
-            Program.PubeSlot = Enum.Parse<PubeSlot>(cBoxPube.SelectedValue.ToString() ?? string.Empty);
             string[] selectedFiles;
             using (OpenFileDialog fileDialog = new())
             {
@@ -59,7 +55,9 @@ namespace TTMPLReplacer
         {
             StringBuilder sb = new();
             sb.AppendLine("Written by Bread#9902 with great assistance by Bizu for actually knowing what's getting replaced with what.");
+            sb.AppendLine();
             sb.AppendLine("If you have issues feel free to DM TuckMeIntoBread#9902 on Discord with an attached Output.log file and a detailed description of the issue.");
+            sb.AppendLine();
             sb.AppendLine("Additionally, make sure you're using the latest version: 'github.com/TuckMeIntoBread/TTMPLReplacer'");
             MessageBox.Show(sb.ToString(), "Help!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
