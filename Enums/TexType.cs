@@ -4,7 +4,7 @@
     {
         None,
         Diffuse,
-        Mask,
+        Specular,
         Normal,
     }
 }

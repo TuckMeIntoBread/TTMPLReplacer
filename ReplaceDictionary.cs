@@ -6,20 +6,25 @@ namespace TTMPLReplacer
 {
     public static class ReplaceDictionary
     {
-        public static bool TryGetReplacementPath(PathData pathData, out string replacementPath)
+        public static bool TryGetReplacementFileName(PathData pathData, out string replacementFile)
         {
-            replacementPath = string.Empty;
+            replacementFile = string.Empty;
             try
             {
                 switch (Program.ConvertType)
                 {
                     case ConvertType.Bibo:
-                        return TryGetReplacementPathBibo(pathData, out replacementPath);
+                        if (!TryGetBibo(pathData, out replacementFile)) return false;
+                        break;
                     case ConvertType.Gen3:
-                        return TryGetReplacementPathTitan(pathData, out replacementPath);
+                        if (!TryGetTitan(pathData, out replacementFile)) return false;
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(Program.ConvertType));
                 }
+
+                replacementFile = $"{replacementFile}_{GetTexType(pathData)}.tex";
+                return true;
             }
             catch (KeyNotFoundException e)
             {
@@ -53,7 +58,7 @@ namespace TTMPLReplacer
             0191,
         };
 
-        private static bool TryGetReplacementPathBibo(PathData pathData, out string replacementPath)
+        private static bool TryGetBibo(PathData pathData, out string replacementPath)
         {
             replacementPath = string.Empty;
 
@@ -122,7 +127,7 @@ namespace TTMPLReplacer
             { 0001, "pubes/aura_r_pubes" },
         };
         
-        private static bool TryGetReplacementPathTitan(PathData pathData, out string replacementPath)
+        private static bool TryGetTitan(PathData pathData, out string replacementPath)
         {
             replacementPath = string.Empty;
 
@@ -184,5 +189,28 @@ namespace TTMPLReplacer
         {
             { 0001, "tfgen3vieraf" },
         };
+
+        private static string GetTexType(PathData pathData)
+        {
+            switch (pathData.TexType)
+            {
+                case TexType.Diffuse:
+                    return "d";
+                case TexType.Specular:
+                    switch (Program.ConvertType)
+                    {
+                        case ConvertType.Bibo:
+                            return "m";
+                        case ConvertType.Gen3:
+                            return "s";
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Program.ConvertType), Program.ConvertType, "ConvertType somehow wasn't set?");
+                    }
+                case TexType.Normal:
+                    return "n";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(pathData.TexType), pathData.TexType, $"Unknown TexType for {pathData}!");
+            }
+        }
     }
 }

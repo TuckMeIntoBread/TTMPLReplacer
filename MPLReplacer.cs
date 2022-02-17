@@ -63,10 +63,10 @@ namespace TTMPLReplacer
                 return;
             }
 
-            if (ReplaceDictionary.TryGetReplacementPath(pathData, out string replacementPath))
+            if (ReplaceDictionary.TryGetReplacementFileName(pathData, out string replacementFile))
             {
                 string prevPath = modsJson.FullPath;
-                modsJson.FullPath = replacementPath;
+                modsJson.FullPath = $"{pathData.Path}{replacementFile}";
                 Program.Log($"Converted {modsJson.Name} from '{prevPath}' to '{modsJson.FullPath}'");
                 return;
             }

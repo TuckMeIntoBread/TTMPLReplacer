@@ -81,7 +81,7 @@ namespace TTMPLReplacer
                 case "specular":
                 case "m":
                 case "s":
-                    TexType = TexType.Mask;
+                    TexType = TexType.Specular;
                     break;
                 case "normal":
                 case "norm":
