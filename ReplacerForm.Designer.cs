@@ -61,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 368);
+            this.label1.Location = new System.Drawing.Point(18, 370);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 15);
             this.label1.TabIndex = 10;
@@ -69,7 +69,7 @@
             // 
             // txtVersion
             // 
-            this.txtVersion.Location = new System.Drawing.Point(17, 390);
+            this.txtVersion.Location = new System.Drawing.Point(23, 392);
             this.txtVersion.Name = "txtVersion";
             this.txtVersion.ReadOnly = true;
             this.txtVersion.Size = new System.Drawing.Size(126, 23);
@@ -79,7 +79,7 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(149, 390);
+            this.btnHelp.Location = new System.Drawing.Point(155, 392);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(55, 23);
             this.btnHelp.TabIndex = 12;
@@ -198,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(240, 435);
+            this.ClientSize = new System.Drawing.Size(237, 435);
             this.Controls.Add(this.gBoxPube);
             this.Controls.Add(this.gBoxSkin);
             this.Controls.Add(this.btnHelp);
