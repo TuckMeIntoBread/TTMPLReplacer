@@ -113,7 +113,7 @@ namespace TTMPLReplacer
             IsValid = ValidCheck.Valid;
         }
 
-        private static readonly Regex ParseFullPath = new(@"^(?<path>chara\/human\/c(?<race>\d{4})\/obj\/body\/(?<type>b\d{4})\/texture\/)(?<filename>.+)$",
+        private static readonly Regex ParseFullPath = new(@"^(?<path>chara\/human\/c(?<race>\d{4})\/obj\/body\/b(?<type>\d{4})\/texture\/)(?<filename>.+)$",
             RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         private static readonly Regex ParseFileName = new(@"^(?:--)?(?:v\d{2}_)?c\d{4}[bf]\d{4}_(?<mid>[cbde])_(?<texType>[^_.]+)\.tex$",
