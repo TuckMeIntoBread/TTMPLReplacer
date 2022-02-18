@@ -35,6 +35,7 @@ namespace TTMPLReplacer
                     
                     zip.RemoveEntry(mpl);
                     zip.AddEntry(mpl.FileName, JsonConvert.SerializeObject(jsonData));
+                    zip.AddEntry("CONVERTED.txt", "Converted using TTMPLReplacer made by Bread and Bizu.");
                     zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
                     zip.CompressionLevel = CompressionLevel.None;
                     if (!Directory.Exists(Program.ConvertedFolder)) Directory.CreateDirectory(Program.ConvertedFolder);
