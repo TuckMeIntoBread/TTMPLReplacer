@@ -36,9 +36,9 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.gBoxSkin = new System.Windows.Forms.GroupBox();
             this.cBoxSkinGen3 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cBoxSkinBibo = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.gBoxPube = new System.Windows.Forms.GroupBox();
             this.cBoxPubeGen3 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -112,14 +112,23 @@
             this.cBoxSkinGen3.Size = new System.Drawing.Size(182, 23);
             this.cBoxSkinGen3.TabIndex = 20;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 15);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Old Bibo Slot";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 15);
+            this.label2.Size = new System.Drawing.Size(79, 15);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Gen3 Slot";
+            this.label2.Text = "Old Gen3 Slot";
             // 
             // cBoxSkinBibo
             // 
@@ -131,15 +140,6 @@
             this.cBoxSkinBibo.Name = "cBoxSkinBibo";
             this.cBoxSkinBibo.Size = new System.Drawing.Size(182, 23);
             this.cBoxSkinBibo.TabIndex = 18;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 15);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Bibo Slot";
             // 
             // gBoxPube
             // 
@@ -170,18 +170,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 15);
+            this.label4.Size = new System.Drawing.Size(76, 15);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Bibo Slot";
+            this.label4.Text = "Old Bibo Slot";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 73);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 15);
+            this.label5.Size = new System.Drawing.Size(79, 15);
             this.label5.TabIndex = 19;
-            this.label5.Text = "Gen3 Slot";
+            this.label5.Text = "Old Gen3 Slot";
             // 
             // cBoxPubeBibo
             // 

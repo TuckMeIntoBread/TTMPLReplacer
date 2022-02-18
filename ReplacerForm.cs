@@ -69,10 +69,8 @@ namespace TTMPLReplacer
         private void btnHelp_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new();
-            sb.AppendLine("Written by Bread#9902 with great assistance by Bizu for actually knowing what's getting replaced with what.");
-            sb.AppendLine();
-            sb.AppendLine("If you have issues feel free to DM TuckMeIntoBread#9902 on Discord with an attached Output.log file and a detailed description of the issue.");
-            sb.AppendLine();
+            sb.AppendLine("Written by Bread#9902 with great assistance by Bizu for actually knowing what's getting replaced with what." + Environment.NewLine);
+            sb.AppendLine("If you have issues feel free to DM TuckMeIntoBread#9902 on Discord with an attached Output.log file and a detailed description of the issue." + Environment.NewLine);
             sb.AppendLine("Additionally, make sure you're using the latest version: 'github.com/TuckMeIntoBread/TTMPLReplacer'");
             MessageBox.Show(sb.ToString(), "Help!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
