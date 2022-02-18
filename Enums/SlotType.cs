@@ -11,5 +11,7 @@ namespace TTMPLReplacer.Enums
         d,
         e,
         f,
+        g,
+        p,
     }
 }
