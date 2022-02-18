@@ -58,24 +58,23 @@ namespace TTMPLReplacer
             if (modsJson is null) throw new ArgumentNullException(nameof(modsJson));
             if (modsJson.FullPath is null) throw new ArgumentNullException(nameof(modsJson.FullPath), $"{modsJson.Name} has no FullPath!");
             if (!TryGetValidPathData(modsJson, out PathData pathData)) return;
+            if (!ReplaceDictionary.TryGetReplacementFileName(pathData, out string replacementFile)) return;
 
-            if (ReplaceDictionary.TryGetReplacementFileName(pathData, out string replacementFile))
+            string prevPath = modsJson.FullPath;
+            if (pathData.IsBiboConvert)
             {
-                string prevPath = modsJson.FullPath;
-                switch (Program.ConvertType)
-                {
-                    case ConvertType.Bibo:
-                        modsJson.FullPath = $"chara/bibo/{replacementFile}";
-                        break;
-                    case ConvertType.Gen3:
-                        modsJson.FullPath = $"{pathData.Path}{replacementFile}";
-                        break;
-                }
-                Program.Log($"Converted {modsJson.Name} from '{prevPath}' to '{modsJson.FullPath}'");
+                modsJson.FullPath = $"chara/bibo/{replacementFile}";
+            }
+            else if (pathData.IsGen3Convert)
+            {
+                modsJson.FullPath = $"{pathData.Path}{replacementFile}";
+            }
+            else
+            {
+                Program.Log($"Did not convert {pathData}.");
                 return;
             }
-            
-            Program.Log($"Did not convert {pathData}.");
+            Program.Log($"Converted {modsJson.Name} from '{prevPath}' to '{modsJson.FullPath}'");
         }
 
         private static bool TryGetValidPathData(ModsJson modsJson, out PathData pathData)

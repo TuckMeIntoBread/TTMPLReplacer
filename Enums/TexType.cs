@@ -2,7 +2,7 @@
 {
     public enum TexType
     {
-        None,
+        Unknown,
         Diffuse,
         Specular,
         Normal,

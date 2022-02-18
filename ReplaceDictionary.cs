@@ -11,16 +11,15 @@ namespace TTMPLReplacer
             replacementFile = string.Empty;
             try
             {
-                switch (Program.ConvertType)
+                // Check if SlotType is BiboSkin conversion.
+                if (pathData.IsBiboConvert && !TryGetBibo(pathData, out replacementFile))
                 {
-                    case ConvertType.Bibo:
-                        if (!TryGetBibo(pathData, out replacementFile)) return false;
-                        break;
-                    case ConvertType.Gen3:
-                        if (!TryGetTitan(pathData, out replacementFile)) return false;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(Program.ConvertType));
+                    return false;
+                }
+
+                if (pathData.IsGen3Convert && !TryGetTitan(pathData, out replacementFile))
+                {
+                    return false;
                 }
 
                 replacementFile = $"{replacementFile}_{GetTexType(pathData)}.tex";
@@ -63,7 +62,7 @@ namespace TTMPLReplacer
             replacementPath = string.Empty;
 
             // Au Ra with pubes uses custom path
-            if (pathData.RaceCode == 1401 && pathData.IsPubes)
+            if (pathData.RaceCode == 1401 && pathData.IsBiboPubes)
             {
                 replacementPath = BiboAuRaPubes[pathData.TypeCode];
                 return true;
@@ -91,7 +90,7 @@ namespace TTMPLReplacer
                     throw new KeyNotFoundException("Unknown/Invalid race code.");
             }
 
-            if (pathData.IsPubes) replacementPath = $"{replacementPath}_pubes";
+            if (pathData.IsBiboPubes) replacementPath = $"{replacementPath}_pubes";
             return true;
         }
 
@@ -131,7 +130,7 @@ namespace TTMPLReplacer
         {
             replacementPath = string.Empty;
 
-            if (pathData.IsPubes)
+            if (pathData.IsGen3Pubes)
             {
                 // Don't change if already pubes 'c'.
                 if (string.Equals(pathData.FileSlot, "c", StringComparison.OrdinalIgnoreCase))
@@ -140,7 +139,7 @@ namespace TTMPLReplacer
                     return false;
                 }
 
-                replacementPath = $"{pathData.Path}{pathData.FileName.Replace("_e_", "_c_", StringComparison.OrdinalIgnoreCase)}";
+                replacementPath = $"{pathData.Path}{pathData.FileName.Replace($"_{ReplacerForm.Gen3Pube.ToString()}_", "_c_", StringComparison.OrdinalIgnoreCase)}";
                 return true;
             }
 
@@ -197,14 +196,17 @@ namespace TTMPLReplacer
                 case TexType.Diffuse:
                     return "d";
                 case TexType.Specular:
-                    switch (Program.ConvertType)
+                    if (pathData.IsBiboConvert)
                     {
-                        case ConvertType.Bibo:
-                            return "m";
-                        case ConvertType.Gen3:
-                            return "s";
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(Program.ConvertType), Program.ConvertType, "ConvertType somehow wasn't set?");
+                        return "m";
+                    }
+                    else if (pathData.IsGen3Convert)
+                    {
+                        return "s";
+                    }
+                    else
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(pathData.SlotType), pathData.SlotType, "We don't know how to handle this SlotType! Check your dropdown settings.");
                     }
                 case TexType.Normal:
                     return "n";

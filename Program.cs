@@ -6,7 +6,7 @@ namespace TTMPLReplacer
 {
     static class Program
     {
-        public const string VersionNumber = "1.1.0";
+        public const string VersionNumber = "1.3.0";
         
         public static string BasePath => AppDomain.CurrentDomain.BaseDirectory;
 
@@ -28,8 +28,6 @@ namespace TTMPLReplacer
             using StreamWriter sw = File.AppendText(LogFile);
             sw.WriteLine(logText);
         }
-
-        public static Enums.ConvertType ConvertType;
 
         /// <summary>
         ///  The main entry point for the application.

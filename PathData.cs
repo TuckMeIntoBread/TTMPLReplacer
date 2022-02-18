@@ -22,11 +22,21 @@ namespace TTMPLReplacer
 
         public int TypeCode { get; }
 
-        public TexType TexType { get; } = TexType.None;
+        public TexType TexType { get; } = TexType.Unknown;
 
-        public bool IsPubes => string.Equals(FileSlot, "c", StringComparison.OrdinalIgnoreCase) || string.Equals(FileSlot, "e", StringComparison.OrdinalIgnoreCase);
+        public SlotType SlotType { get; } = SlotType.Unknown;
+
+        public bool IsBiboSkin => SlotType == ReplacerForm.BiboSkin;
         
-        public bool IsSkin => string.Equals(FileSlot, "b", StringComparison.OrdinalIgnoreCase) || string.Equals(FileSlot, "d", StringComparison.OrdinalIgnoreCase);
+        public bool IsGen3Skin => SlotType == ReplacerForm.Gen3Skin;
+        
+        public bool IsBiboPubes => SlotType == ReplacerForm.Gen3Pube;
+        
+        public bool IsGen3Pubes => SlotType == ReplacerForm.Gen3Pube;
+
+        public bool IsBiboConvert => IsBiboPubes || IsBiboSkin;
+
+        public bool IsGen3Convert => IsGen3Pubes || IsGen3Skin;
 
         private bool ValidRace => ReplaceDictionary.ValidRaceCodes.Contains(RaceCode);
 
@@ -66,7 +76,8 @@ namespace TTMPLReplacer
                 return;
             }
             FileSlot = fileMatch.Groups["mid"].Value.ToLower();
-            if (!IsPubes && !IsSkin)
+            SlotType = Enum.TryParse(FileSlot, true, out SlotType slotType) ? slotType : SlotType.Unknown;
+            if (SlotType == SlotType.Unknown)
             {
                 IsValid = ValidCheck.InvalidSlot;
                 return;
@@ -94,7 +105,7 @@ namespace TTMPLReplacer
                     TexType = TexType.Normal;
                     break;
                 default:
-                    TexType = TexType.None;
+                    TexType = TexType.Unknown;
                     IsValid = ValidCheck.InvalidTexType;
                     break;
             }

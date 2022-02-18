@@ -3,9 +3,10 @@
 namespace TTMPLReplacer.Enums
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public enum PubeSlot
+    public enum SlotType
     {
-        none,
+        Unknown,
+        b,
         c,
         d,
         e,
