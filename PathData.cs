@@ -48,14 +48,14 @@ namespace TTMPLReplacer
         {
             Name = modsJson.Name;
             FullPath = modsJson.FullPath;
-            Match fullMatch = ParseFullPath.Match(modsJson.FullPath);
-            if (!fullMatch.Success)
+            Match match = ParseFullPath.Match(modsJson.FullPath);
+            if (!match.Success)
             {
                 IsValid = ValidCheck.FullPathRegexMismatch;
                 return;
             }
-            if (int.TryParse(fullMatch.Groups["race"].Value, out int raceNum)) RaceCode = raceNum;
-            if (int.TryParse(fullMatch.Groups["type"].Value, out int typeNum)) TypeCode = typeNum;
+            if (int.TryParse(match.Groups["race"].Value, out int raceNum)) RaceCode = raceNum;
+            if (int.TryParse(match.Groups["type"].Value, out int typeNum)) TypeCode = typeNum;
             if (!ValidRace)
             {
                 IsValid = ValidCheck.InvalidRace;
@@ -67,22 +67,10 @@ namespace TTMPLReplacer
                 IsValid = ValidCheck.InvalidType;
                 return;
             }
-            FileName = fullMatch.Groups["filename"].Value;
-            Path = fullMatch.Groups["path"].Value;
-            Match fileMatch = ParseFileName.Match(FileName);
-            if (!fileMatch.Success)
-            {
-                IsValid = ValidCheck.Gen2Tex;
-                return;
-            }
-            FileSlot = fileMatch.Groups["mid"].Value.ToLower();
-            SlotType = Enum.TryParse(FileSlot, true, out SlotType slotType) ? slotType : SlotType.Ignored;
-            if (SlotType == SlotType.Ignored)
-            {
-                IsValid = ValidCheck.InvalidSlot;
-                return;
-            }
-            FileTexType = fileMatch.Groups["texType"].Value.ToLower();
+            FileName = match.Groups["filename"].Value;
+            Path = match.Groups["path"].Value;
+            FileSlot = match.Groups["mid"].Value.ToLower();
+            FileTexType = match.Groups["texType"].Value.ToLower();
             switch (FileTexType)
             {
                 case "dif":
@@ -110,13 +98,23 @@ namespace TTMPLReplacer
                     break;
             }
 
+            if (string.IsNullOrEmpty(FileSlot))
+            {
+                IsValid = ValidCheck.Gen2Tex;
+                return;
+            }
+            
+            SlotType = Enum.TryParse(FileSlot, true, out SlotType slotType) ? slotType : SlotType.Ignored;
+            if (SlotType == SlotType.Ignored)
+            {
+                IsValid = ValidCheck.InvalidSlot;
+                return;
+            }
+
             IsValid = ValidCheck.Valid;
         }
 
-        private static readonly Regex ParseFullPath = new(@"^(?<path>chara\/human\/c(?<race>\d{4})\/obj\/body\/b(?<type>\d{4})\/texture\/)(?<filename>.+)$",
-            RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-        private static readonly Regex ParseFileName = new(@"^(?:--)?(?:v\d{2}_)?c\d{4}[bf]\d{4}_(?<mid>[cbde])_(?<texType>[^_.]+)\.tex$",
+        private static readonly Regex ParseFullPath = new(@"^(?<path>chara\/human\/c(?<race>\d{4})\/obj\/body\/b(?<type>\d{4})\/texture\/)(?<filename>(?:--)?(?:v\d{2}_)?c\d{4}[bf]\d{4}_(?<mid>[^_])?_?(?<texType>[^_.]+)\.tex)$",
             RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public override string ToString() => $"{Name} : '{FullPath}'";

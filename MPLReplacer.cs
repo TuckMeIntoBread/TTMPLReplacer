@@ -64,7 +64,7 @@ namespace TTMPLReplacer
             if (ReplacerForm.CorrectMatA && pathData.IsValid == ValidCheck.Gen2Tex)
             {
                 prevPath = modsJson.FullPath;
-                modsJson.FullPath = $"{pathData.Path}--c{pathData.RaceCode.ConvertCode()}b{pathData.TypeCode.ConvertCode()}_{pathData.TexType}.tex";
+                modsJson.FullPath = $"{pathData.Path}--c{pathData.RaceCode.ConvertCode()}b{pathData.TypeCode.ConvertCode()}_{pathData.GetShortTexType()}.tex";
                 Program.Log($"Converted {modsJson.Name} from '{prevPath}' to '{modsJson.FullPath}'");
                 return;
             }

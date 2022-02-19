@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TTMPLReplacer.Enums;
 
 namespace TTMPLReplacer
 {
@@ -22,7 +21,7 @@ namespace TTMPLReplacer
                     return false;
                 }
 
-                replacementFile = $"{replacementFile}_{GetTexType(pathData)}.tex";
+                replacementFile = $"{replacementFile}_{pathData.GetShortTexType()}.tex";
                 return true;
             }
             catch (KeyNotFoundException e)
@@ -188,31 +187,5 @@ namespace TTMPLReplacer
         {
             { 0001, "tfgen3vieraf" },
         };
-
-        private static string GetTexType(PathData pathData)
-        {
-            switch (pathData.TexType)
-            {
-                case TexType.Diffuse:
-                    return "d";
-                case TexType.Specular:
-                    if (pathData.IsBiboConvert)
-                    {
-                        return "m";
-                    }
-                    else if (pathData.IsGen3Convert)
-                    {
-                        return "s";
-                    }
-                    else
-                    {
-                        throw new ArgumentOutOfRangeException(nameof(pathData.SlotType), pathData.SlotType, "We don't know how to handle this SlotType! Check your dropdown settings.");
-                    }
-                case TexType.Normal:
-                    return "n";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(pathData.TexType), pathData.TexType, $"Unknown TexType for {pathData}!");
-            }
-        }
     }
 }
