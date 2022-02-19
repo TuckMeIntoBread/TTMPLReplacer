@@ -59,9 +59,19 @@ namespace TTMPLReplacer
             if (modsJson is null) throw new ArgumentNullException(nameof(modsJson));
             if (modsJson.FullPath is null) throw new ArgumentNullException(nameof(modsJson.FullPath), $"{modsJson.Name} has no FullPath!");
             if (!TryGetValidPathData(modsJson, out PathData pathData)) return;
+
+            string prevPath;
+            if (ReplacerForm.CorrectMatA && pathData.IsValid == ValidCheck.Gen2Tex)
+            {
+                prevPath = modsJson.FullPath;
+                modsJson.FullPath = $"{pathData.Path}--c{pathData.RaceCode.ConvertCode()}b{pathData.TypeCode.ConvertCode()}_{pathData.TexType}.tex";
+                Program.Log($"Converted {modsJson.Name} from '{prevPath}' to '{modsJson.FullPath}'");
+                return;
+            }
+
             if (!ReplaceDictionary.TryGetReplacementFileName(pathData, out string replacementFile)) return;
 
-            string prevPath = modsJson.FullPath;
+            prevPath = modsJson.FullPath;
             if (pathData.IsBiboConvert)
             {
                 modsJson.FullPath = $"chara/bibo/{replacementFile}";
@@ -98,19 +108,24 @@ namespace TTMPLReplacer
                 return false;
             }
             
+            if (!modsJson.FullPath.Contains("/texture/", StringComparison.OrdinalIgnoreCase))
+            {
+                LogFailed("Not a texture path.");
+                return false;
+            }
+            
             if (!modsJson.FullPath.Contains("/body/", StringComparison.OrdinalIgnoreCase))
             {
                 LogFailed("Not a body path.");
                 return false;
             }
 
-            if (!modsJson.FullPath.Contains("/texture/", StringComparison.OrdinalIgnoreCase))
-            {
-                LogFailed("Not a texture path.");
-                return false;
-            }
-
             pathData = new PathData(modsJson);
+            if (ReplacerForm.CorrectMatA && pathData.IsValid == ValidCheck.Gen2Tex)
+            {
+                return true;
+            }
+            
             if (pathData.IsValid != ValidCheck.Valid)
             {
                 LogFailed(pathData.IsValid.ToString());
@@ -118,6 +133,17 @@ namespace TTMPLReplacer
             }
 
             return true;
+        }
+
+        private static string ConvertCode(this int code)
+        {
+            return code switch
+            {
+                > 1000 => code.ToString(),
+                > 100 => $"0{code.ToString()}",
+                > 10 => $"00{code.ToString()}",
+                _ => $"000{code.ToString()}"
+            };
         }
     }
 }

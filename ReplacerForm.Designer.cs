@@ -44,13 +44,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cBoxPubeBibo = new System.Windows.Forms.ComboBox();
+            this.cBoxMatA = new System.Windows.Forms.CheckBox();
             this.gBoxSkin.SuspendLayout();
             this.gBoxPube.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(23, 310);
+            this.btnConvert.Location = new System.Drawing.Point(23, 338);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(182, 29);
             this.btnConvert.TabIndex = 3;
@@ -194,11 +195,22 @@
             this.cBoxPubeBibo.Size = new System.Drawing.Size(182, 23);
             this.cBoxPubeBibo.TabIndex = 18;
             // 
+            // cBoxMatA
+            // 
+            this.cBoxMatA.AutoSize = true;
+            this.cBoxMatA.Location = new System.Drawing.Point(23, 296);
+            this.cBoxMatA.Name = "cBoxMatA";
+            this.cBoxMatA.Size = new System.Drawing.Size(100, 19);
+            this.cBoxMatA.TabIndex = 22;
+            this.cBoxMatA.Text = "Correct Mat A";
+            this.cBoxMatA.UseVisualStyleBackColor = true;
+            // 
             // ReplacerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(237, 435);
+            this.Controls.Add(this.cBoxMatA);
             this.Controls.Add(this.gBoxPube);
             this.Controls.Add(this.gBoxSkin);
             this.Controls.Add(this.btnHelp);
@@ -235,5 +247,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cBoxPubeBibo;
+        private System.Windows.Forms.CheckBox cBoxMatA;
     }
 }

@@ -30,6 +30,8 @@ namespace TTMPLReplacer
         public static SlotType BiboPube { get; private set; }
 
         public static SlotType Gen3Pube { get; private set; }
+        
+        public static bool CorrectMatA { get; private set; }
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
@@ -37,6 +39,7 @@ namespace TTMPLReplacer
             Gen3Skin = Enum.Parse<SlotType>(cBoxSkinGen3.SelectedValue.ToString() ?? string.Empty);
             BiboPube = Enum.Parse<SlotType>(cBoxPubeBibo.SelectedValue.ToString() ?? string.Empty);
             Gen3Pube = Enum.Parse<SlotType>(cBoxPubeGen3.SelectedValue.ToString() ?? string.Empty);
+            CorrectMatA = cBoxMatA.Checked;
             Program.Log($"BiboSkin: {BiboSkin}, BiboPube: {BiboPube}, Gen3Skin: {Gen3Skin}, Gen3Pube: {Gen3Pube}");
             string[] selectedFiles;
             using (OpenFileDialog fileDialog = new())
