@@ -5,7 +5,7 @@ namespace TTMPLReplacer.Enums
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public enum SlotType
     {
-        Unknown,
+        Ignored,
         b,
         c,
         d,

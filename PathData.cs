@@ -24,7 +24,7 @@ namespace TTMPLReplacer
 
         public TexType TexType { get; } = TexType.Unknown;
 
-        public SlotType SlotType { get; } = SlotType.Unknown;
+        public SlotType SlotType { get; } = SlotType.Ignored;
 
         public bool IsBiboSkin => SlotType == ReplacerForm.BiboSkin;
         
@@ -76,8 +76,8 @@ namespace TTMPLReplacer
                 return;
             }
             FileSlot = fileMatch.Groups["mid"].Value.ToLower();
-            SlotType = Enum.TryParse(FileSlot, true, out SlotType slotType) ? slotType : SlotType.Unknown;
-            if (SlotType == SlotType.Unknown)
+            SlotType = Enum.TryParse(FileSlot, true, out SlotType slotType) ? slotType : SlotType.Ignored;
+            if (SlotType == SlotType.Ignored)
             {
                 IsValid = ValidCheck.InvalidSlot;
                 return;
